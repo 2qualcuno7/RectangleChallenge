@@ -1,7 +1,6 @@
-package com.nuvalence.challenge.rectangles.controller;
+package com.nuvalence.challenge.rectangles.controllers;
 
-import com.nuvalence.challenge.rectangles.model.NuvalencePolygon;
-import com.nuvalence.challenge.rectangles.service.NuvalencePolygonService;
+import com.nuvalence.challenge.rectangles.services.NuvalencePolygonService;
 import com.nuvalence.challenge.rectangles.types.AdjacencyType;
 import org.springframework.beans.factory.annotation.Autowired;
 

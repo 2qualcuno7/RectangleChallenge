@@ -1,4 +1,4 @@
-package com.nuvalence.challenge.rectangles.service;
+package com.nuvalence.challenge.rectangles.services;
 
 import com.nuvalence.challenge.rectangles.model.NuvalencePolygon;
 import com.nuvalence.challenge.rectangles.types.AdjacencyType;
