@@ -1,11 +1,13 @@
 package com.nuvalence.challenge.rectangles.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class NuvalencePoint {
-    Double x;
-    Double y;
+    private Double x;
+    private Double y;
 }

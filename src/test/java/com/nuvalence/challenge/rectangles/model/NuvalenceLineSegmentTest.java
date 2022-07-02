@@ -245,4 +245,53 @@ public class NuvalenceLineSegmentTest {
         assertEquals(expectedValueY, optionalRealValue.get().getY(), 0.000001);
     }
 
+    //Point part of segment
+    @Test
+    void part(){
+        NuvalenceLineSegment line = new NuvalenceLineSegment(
+            NuvalencePoint.builder().x(3.1).y(-200.97).build(),
+            NuvalencePoint.builder().x(-0.97).y(74.569).build()
+        );
+
+        NuvalencePoint point = NuvalencePoint.builder().x(1.2).y(-72.34).build();
+
+        assertEquals(true, line.isPartOfSegment(point));
+    }
+
+    @Test
+    void notPart(){
+        NuvalenceLineSegment line = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(7.56).y(1.3).build(),
+                NuvalencePoint.builder().x(-43.8).y(8.9).build()
+        );
+
+        NuvalencePoint point = NuvalencePoint.builder().x(3.41).y(5.9).build();
+
+        assertEquals(false, line.isPartOfSegment(point));
+    }
+
+    @Test
+    void sameLineNotPart(){
+        NuvalenceLineSegment line = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(1.4).y(5.752).build(),
+                NuvalencePoint.builder().x(3.3).y(130.734).build()
+        );
+
+        NuvalencePoint point = NuvalencePoint.builder().x(7.6).y(413.588).build();
+
+        assertEquals(false, line.isPartOfSegment(point));
+    }
+
+    @Test
+    void edge(){
+        NuvalenceLineSegment line = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-89.7).y(67.9).build(),
+                NuvalencePoint.builder().x(0.0).y(98.7).build()
+        );
+
+        NuvalencePoint point = NuvalencePoint.builder().x(0.0).y(98.7).build();
+
+        assertEquals(true, line.isPartOfSegment(point));
+    }
+
 }
