@@ -3,13 +3,14 @@ package com.nuvalence.challenge.rectangles.model;
 import lombok.Data;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 @Data
 public class NuvalenceLineSegment {
-    private Point start;
-    private Point end;
+    private Point2D.Double start;
+    private Point2D.Double end;
 
-    public Point intersection(NuvalenceLineSegment otherLine){
+    public Point2D.Double intersection(NuvalenceLineSegment otherLine){
         return null;
     }
 
