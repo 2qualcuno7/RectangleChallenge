@@ -10,16 +10,20 @@ import java.util.List;
 
 @Service
 public class NuvalencePolygonService {
-    public List<Point> intersections(NuvalencePolygon polygonOne, NuvalencePolygon polygonTwo){
+    public List<Point> intersections(Point[] pointsFirstPoly, Point[] pointsSecondPoly){
         return new ArrayList<>();
     };
 
-    public boolean contains(NuvalencePolygon polygon){
+    public boolean contains(Point[] pointsFirstPoly, Point[] pointsSecondPoly){
         return false;
     };
 
-    public AdjacencyType adjacency(NuvalencePolygon polygon){
+    public AdjacencyType adjacency(Point[] pointsFirstPoly, Point[] pointsSecondPoly){
         return AdjacencyType.NOT_ADJACENT;
     };
+
+    private NuvalencePolygon getShape(Point[] points){
+        return null;
+    }
 
 }
