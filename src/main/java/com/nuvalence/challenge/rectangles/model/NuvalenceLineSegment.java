@@ -17,6 +17,16 @@ public class NuvalenceLineSegment {
         return (this.end.y - this.start.y) / (this.end.x - this.start.x);
     }
 
+    public Optional<Double> yIntercept(){
+        Double slope = this.findSlope();
+        if(slope.equals(0.0))
+            return Optional.of(this.start.y);
+        if(slope.equals(Double.POSITIVE_INFINITY))
+            return Optional.empty();
+
+        return Optional.of(this.start.y - (this.start.x * slope));
+    }
+
     public Optional<Point2D.Double> intersection(NuvalenceLineSegment otherLine){
         return null;
     }
