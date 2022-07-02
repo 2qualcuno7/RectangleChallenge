@@ -1,7 +1,6 @@
 package com.nuvalence.challenge.rectangles.controllers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
