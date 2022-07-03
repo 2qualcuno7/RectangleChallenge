@@ -432,5 +432,26 @@ public class NuvalenceLineSegmentTest {
         assertEquals(true, lineOne.overlap(lineTwo));
     }
 
+    //Length
+    @Test
+    void regularLength(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+            NuvalencePoint.builder().x(7.95).y(-90.7).build(),
+            NuvalencePoint.builder().x(4.8).y(7.9).build()
+        );
+
+        assertEquals(98.6503041, lineOne.length(), 0.000001);
+    }
+
+    @Test
+    void lengthForPoint(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+            NuvalencePoint.builder().x(7.9).y(-525.93).build(),
+            NuvalencePoint.builder().x(7.9).y(-525.93).build()
+        );
+
+        assertEquals(0.0, lineOne.length(), 0.000001);
+    }
+
 
 }

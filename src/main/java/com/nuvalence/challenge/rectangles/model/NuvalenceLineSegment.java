@@ -6,8 +6,7 @@ import lombok.Data;
 
 import java.util.Optional;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
+import static java.lang.Math.*;
 
 
 @Data
@@ -98,5 +97,9 @@ public class NuvalenceLineSegment {
     public Boolean overlap(NuvalenceLineSegment otherLine){
         return this.hasSameFormula(otherLine)
                 && (this.isPartOfSegment(otherLine.start) || this.isPartOfSegment(otherLine.end));
+    }
+
+    public Double length(){
+        return sqrt(pow((this.end.getX() - this.start.getX()), 2) + pow((this.end.getY() - this.start.getY()),2));
     }
 }
