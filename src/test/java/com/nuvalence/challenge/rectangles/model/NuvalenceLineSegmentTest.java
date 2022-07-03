@@ -294,4 +294,96 @@ public class NuvalenceLineSegmentTest {
         assertEquals(true, line.isPartOfSegment(point));
     }
 
+    //Adjacency, same line
+    @Test
+    void isSameSegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(1.3).y(7.5).build(),
+                NuvalencePoint.builder().x(6.0).y(0.8).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(1.3).y(7.5).build(),
+                NuvalencePoint.builder().x(6.0).y(0.8).build()
+        );
+
+        assertEquals(true, lineOne.isSameSegment(lineTwo));
+    }
+
+    @Test
+    void sameLineNotSameSegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(0.0).y(5.3).build(),
+                NuvalencePoint.builder().x(0.0).y(4.2).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(0.0).y(5.31).build(),
+                NuvalencePoint.builder().x(0.0).y(7.3).build()
+        );
+
+        assertEquals(false, lineOne.isSameSegment(lineTwo));
+    }
+
+    //Subsegment
+    @Test
+    void isSubsegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(2.8).y(7.8).build(),
+                NuvalencePoint.builder().x(2.8).y(9.7).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(2.8).y(7.0).build(),
+                NuvalencePoint.builder().x(2.8).y(10.0).build()
+        );
+
+        assertEquals(true, lineOne.isSubsegment(lineTwo));
+    }
+
+    @Test
+    void notSubsegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(5.6).y(4.9).build(),
+                NuvalencePoint.builder().x(5.6).y(-0.1).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(5.7).y(7.0).build(),
+                NuvalencePoint.builder().x(2.8).y(7.0).build()
+        );
+
+        assertEquals(false, lineOne.isSubsegment(lineTwo));
+    }
+
+    @Test
+    void sameLineNotSubsegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(7.9).build(),
+                NuvalencePoint.builder().x(-0.9).y(0.0).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(-0.1).build(),
+                NuvalencePoint.builder().x(-0.9).y(-0.2).build()
+        );
+
+        assertEquals(false, lineOne.isSubsegment(lineTwo));
+    }
+
+    @Test
+    void sameLineOverlapsNotSubsegment(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(7.9).build(),
+                NuvalencePoint.builder().x(-0.9).y(0.0).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(1.5).build(),
+                NuvalencePoint.builder().x(-0.9).y(-0.2).build()
+        );
+
+        assertEquals(false, lineOne.isSubsegment(lineTwo));
+    }
+
 }

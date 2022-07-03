@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.awt.*;
-import java.awt.geom.Point2D;
 import java.util.Optional;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 
 @Data
 @AllArgsConstructor
@@ -74,15 +72,31 @@ public class NuvalenceLineSegment {
     }
 
     public Boolean hasSameFormula(NuvalenceLineSegment otherLine){
-        if((this.yIntercept().isEmpty() && otherLine.yIntercept().isEmpty())
-        || (this.yIntercept().isPresent() && otherLine.yIntercept().isPresent()))
-            return  Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001
-                    && Math.abs(otherLine.yIntercept().get() - this.yIntercept().get()) < 0.000001;
+        if((this.yIntercept().isEmpty() && otherLine.yIntercept().isEmpty()))
+            return (Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001)
+                    || otherLine.findSlope().equals(this.findSlope());
+
+        if(this.yIntercept().isPresent() && otherLine.yIntercept().isPresent())
+            return  ((Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001) || otherLine.findSlope().equals(this.findSlope()))
+                    &&
+                    ((Math.abs(otherLine.yIntercept().get() - this.yIntercept().get()) < 0.000001) || otherLine.yIntercept().get().equals(this.yIntercept().get()));
 
         return false;
     }
 
-    public boolean isSubsegment(NuvalenceLineSegment otherLine){
-        return false;
+    public Boolean isSameSegment(NuvalenceLineSegment otherLine){
+        return this.equals(otherLine);
+    }
+
+    public Boolean isSubsegment(NuvalenceLineSegment otherLine){
+        return this.hasSameFormula(otherLine) &&
+                ((this.isPartOfSegment(otherLine.start) && this.isPartOfSegment(otherLine.end))
+                || (otherLine.isPartOfSegment(this.start) && otherLine.isPartOfSegment(this.end)));
+
+    }
+
+    public Boolean overlap(NuvalenceLineSegment otherLine){
+        return this.hasSameFormula(otherLine)
+                && (this.isPartOfSegment(otherLine.start) || this.isPartOfSegment(otherLine.end));
     }
 }
