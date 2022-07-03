@@ -62,16 +62,14 @@ public class NuvalenceRectangle extends NuvalencePolygon{
             }
 
             if(optionalPair.isPresent()) {
-                parallelAndSameSizeEdges.add(allPossibleEdges.get(i));
-                parallelAndSameSizeEdges.add(optionalPair.get());
+                try {
+                    parallelAndSameSizeEdges.add(allPossibleEdges.get(i));
+                    parallelAndSameSizeEdges.add(optionalPair.get());
+                } catch (Exception e){}
             }
         }
 
         //Guard clause, prevents non four sided figures
-        System.out.println(parallelAndSameSizeEdges.size());
-        for(NuvalenceLineSegment line : parallelAndSameSizeEdges)
-            System.out.println(line);
-        System.out.println(" ");
         if(parallelAndSameSizeEdges.size() != 4)
             return empty();
 
