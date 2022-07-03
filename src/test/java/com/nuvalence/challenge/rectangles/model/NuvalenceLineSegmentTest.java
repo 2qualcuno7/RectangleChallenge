@@ -386,4 +386,51 @@ public class NuvalenceLineSegmentTest {
         assertEquals(false, lineOne.isSubsegment(lineTwo));
     }
 
+    //Overlap
+    @Test
+    void overlapOne(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(7.9).build(),
+                NuvalencePoint.builder().x(-0.9).y(0.0).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(-0.9).y(1.5).build(),
+                NuvalencePoint.builder().x(-0.9).y(-0.2).build()
+        );
+
+        assertEquals(true, lineOne.overlap(lineTwo));
+    }
+
+    @Test
+    void overlapTwo(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(8.9).y(0.0).build(),
+                NuvalencePoint.builder().x(-32.7).y(0.0).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(0.8).y(0.0).build(),
+                NuvalencePoint.builder().x(-8.0).y(0.0).build()
+        );
+
+        assertEquals(true, lineOne.overlap(lineTwo));
+    }
+
+    @Test
+    void overlapThree(){
+        NuvalenceLineSegment lineOne = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(7.9).y(-525.93).build(),
+                NuvalencePoint.builder().x(-16.3).y(1112.41).build()
+        );
+
+        NuvalenceLineSegment lineTwo = new NuvalenceLineSegment(
+                NuvalencePoint.builder().x(7.0).y(-465.0).build(),
+                NuvalencePoint.builder().x(-21.9).y(1491.53).build()
+        );
+
+        assertEquals(true, lineOne.overlap(lineTwo));
+    }
+
+
 }
