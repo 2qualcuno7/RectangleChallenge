@@ -1,13 +1,12 @@
 package com.nuvalence.challenge.rectangles.model;
 
-import lombok.Builder;
 import lombok.Data;
 
-import java.awt.*;
-import java.awt.geom.Point2D;
+import java.util.List;
+
 
 @Data
 public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
-    Point2D.Double[] points;
-    NuvalenceLineSegment[] lineSegments;
+    List<NuvalencePoint> points;
+    List<NuvalenceLineSegment> lineSegments;
 }
