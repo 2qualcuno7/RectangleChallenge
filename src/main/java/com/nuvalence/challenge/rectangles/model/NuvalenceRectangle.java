@@ -13,7 +13,7 @@ import static java.util.Optional.*;
 
 @Data
 @Builder
-public class NuvalenceRectangle extends NuvalencePolygon{
+public class NuvalenceRectangle extends NuvalencePolygon {
     private List<NuvalencePoint> points;
     private List<NuvalenceLineSegment> lineSegments;
 
@@ -95,17 +95,16 @@ public class NuvalenceRectangle extends NuvalencePolygon{
         );
     }
 
-    @Override
-    public List<Point2D.Double> intersections(NuvalencePolygon polygon) {
-        return null;
-    }
 
     @Override
+    public List<NuvalencePoint> intersections(NuvalencePolygon otherFigure) {
+        return super.intersections(otherFigure);
+    }
+
     public boolean contains(NuvalencePolygon polygon) {
         return false;
     }
 
-    @Override
     public AdjacencyType adjacency(NuvalencePolygon polygon) {
         return null;
     }

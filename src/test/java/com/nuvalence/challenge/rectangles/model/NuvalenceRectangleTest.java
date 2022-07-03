@@ -162,6 +162,7 @@ public class NuvalenceRectangleTest {
 
     @Test
     void RectangleOne(){
+        /*
         Optional<NuvalenceRectangle> optionalNuvalenceRectangle = NuvalenceRectangle.getInstance(notRectangleRandom);
         if(optionalNuvalenceRectangle.isEmpty())
             System.out.println("Empty");
@@ -177,5 +178,17 @@ public class NuvalenceRectangleTest {
         } catch (Exception e){
             System.out.println("Empty");
         }
+         */
+    }
+
+    //Intersection
+    @Test
+    void simpleIntersection(){
+        Optional<NuvalenceRectangle> rectangleOne = NuvalenceRectangle.getInstance(pThree);
+        Optional<NuvalenceRectangle> rectangleTwo = NuvalenceRectangle.getInstance(pFour);
+
+        System.out.println(rectangleOne.get().intersections(rectangleTwo.get()));
+
+
     }
 }

@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 public interface NuvalencePolygonInterface {
-    public List<Point2D.Double> intersections(NuvalencePolygon polygon);
+    public List<NuvalencePoint> intersections(NuvalencePolygon polygon);
     public boolean contains(NuvalencePolygon polygon);
     public AdjacencyType adjacency(NuvalencePolygon polygon);
 }
