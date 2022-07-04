@@ -4,6 +4,7 @@ import com.nuvalence.challenge.rectangles.dto.RectanglePairDTO;
 import com.nuvalence.challenge.rectangles.exceptions.NotARectangleException;
 import com.nuvalence.challenge.rectangles.model.NuvalencePoint;
 import com.nuvalence.challenge.rectangles.services.NuvalenceRectangleService;
+import com.nuvalence.challenge.rectangles.types.AdjacencyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,17 +23,16 @@ public class RectangleRestController {
 
     @PostMapping(BASE + "/intersection")
     public List<NuvalencePoint> rectangleIntersection(@RequestBody RectanglePairDTO dto) {
-        try {
-            return service.intersections(dto.getPointsRectangleOne(), dto.getPointsRectangleTwo());
-        } catch (NotARectangleException e){
-            throw e;
-        }
+        return service.intersections(dto.getPointsRectangleOne(), dto.getPointsRectangleTwo());
     }
 
-    @GetMapping(BASE)
-    public NuvalencePoint get(){
-        List<NuvalencePoint> points = new ArrayList<>();
-        points.add(NuvalencePoint.builder().x(1d).y(5d).build());
-        return NuvalencePoint.builder().x(1d).y(5d).build();
+    @PostMapping(BASE + "/contains")
+    public boolean rectangleContains(@RequestBody RectanglePairDTO dto) {
+        return service.contains(dto.getPointsRectangleOne(), dto.getPointsRectangleTwo());
+    }
+
+    @PostMapping(BASE + "/adjacency")
+    public AdjacencyType rectangleAdjacency(@RequestBody RectanglePairDTO dto) {
+        return service.adjacency(dto.getPointsRectangleOne(), dto.getPointsRectangleTwo());
     }
 }
