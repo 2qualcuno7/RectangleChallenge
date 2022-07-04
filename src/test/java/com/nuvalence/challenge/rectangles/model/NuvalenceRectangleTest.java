@@ -1,5 +1,6 @@
 package com.nuvalence.challenge.rectangles.model;
 
+import com.nuvalence.challenge.rectangles.types.AdjacencyType;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -209,5 +210,22 @@ public class NuvalenceRectangleTest {
     @Test
     void sharesSideContainment(){
 
+    }
+
+    //Adjacency
+    @Test
+    void properAdjacency(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pTwelve);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pThirteen);
+
+        assertEquals(AdjacencyType.PROPER, rectangleA.get().adjacency(rectangleB.get()));
+    }
+
+    @Test
+    void subline(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pNine);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pEleven);
+
+        assertEquals(AdjacencyType.SUB_LINE, rectangleA.get().adjacency(rectangleB.get()));
     }
 }

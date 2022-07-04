@@ -106,7 +106,8 @@ public class NuvalenceRectangle extends NuvalencePolygon {
         return super.contains(polygon);
     }
 
+    @Override
     public AdjacencyType adjacency(NuvalencePolygon polygon) {
-        return null;
+        return super.adjacency(polygon);
     }
 }

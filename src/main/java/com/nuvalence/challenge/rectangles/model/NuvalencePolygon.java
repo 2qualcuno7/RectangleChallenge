@@ -1,5 +1,6 @@
 package com.nuvalence.challenge.rectangles.model;
 
+import com.nuvalence.challenge.rectangles.types.AdjacencyType;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
     List<NuvalencePoint> points;
     List<NuvalenceLineSegment> lineSegments;
 
+    @Override
     public List<NuvalencePoint> intersections(NuvalencePolygon otherFigure) {
         List<NuvalencePoint> intersections = new ArrayList<>();
 
@@ -151,5 +153,31 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
         }
 
         return true;
+    }
+
+    @Override
+    public AdjacencyType adjacency(NuvalencePolygon polygon){
+        if(this.contains(polygon) || polygon.contains(this))
+            return AdjacencyType.NOT_ADJACENT;
+
+        for(NuvalenceLineSegment lineOne : this.getLineSegments()){
+            for(NuvalenceLineSegment lineTwo : polygon.getLineSegments()){
+                if(lineOne.hasSameFormula(lineTwo)) {
+                    if (
+                        (lineOne.getStart().equals(lineTwo.getStart()) || lineOne.getStart().equals(lineTwo.getEnd()))
+                        && (lineOne.getEnd().equals(lineTwo.getEnd()) || lineOne.getEnd().equals(lineTwo.getStart()))
+                    )
+                        return AdjacencyType.PROPER;
+
+                    if (
+                        (lineOne.isPartOfSegment(lineTwo.getStart()) && lineOne.isPartOfSegment(lineTwo.getEnd()))
+                        || (lineTwo.isPartOfSegment(lineOne.getStart()) && lineTwo.isPartOfSegment(lineOne.getEnd()))
+                    )
+                        return AdjacencyType.SUB_LINE;
+                }
+            }
+        }
+
+        return AdjacencyType.NOT_ADJACENT;
     }
 }
