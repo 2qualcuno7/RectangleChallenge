@@ -108,17 +108,6 @@ public class NuvalenceLineSegment {
     }
 
     public Boolean isParallelNotSameLine(NuvalenceLineSegment otherLine){
-        /*
-            System.out.println(this);
-            System.out.println(otherLine);
-            System.out.println(this.yIntercept());
-            System.out.println(otherLine.yIntercept());
-            System.out.println(this.findSlope());
-            System.out.println(otherLine.findSlope());
-            System.out.println(!this.hasSameFormula(otherLine));
-            System.out.println((Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001));
-            System.out.println(" ");
-        */
 
         if(this.findSlope().isInfinite() && otherLine.findSlope().isInfinite()){
             if(!this.getStart().getX().equals(otherLine.start.getX()))
@@ -131,13 +120,6 @@ public class NuvalenceLineSegment {
     }
 
     public Boolean isPerpendicular(NuvalenceLineSegment otherLine){
-        /*
-        System.out.println(this);
-        System.out.println(otherLine);
-        System.out.println(this.findSlope());
-        System.out.println(otherLine.findSlope());
-        System.out.println("");
-         */
 
         if( (this.findSlope().isInfinite() && (Math.abs(otherLine.findSlope()) < 0.000001))
             || (otherLine.findSlope().isInfinite() && (Math.abs(this.findSlope()) < 0.000001))
