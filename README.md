@@ -12,6 +12,9 @@ It is important to note that although there are several Java classes that alread
 it was decided not to use them as they have limitations for certain use cases and the nature of this project as a
 coding challenge would be better respected creating a solution from scratch.
 
+## Swagger
+Endpoint documentation can be seen in http://localhost:8080/swagger-ui.html, after executing locally.
+
 ## Requirements
 
 This project was tested and works properly with the following:
