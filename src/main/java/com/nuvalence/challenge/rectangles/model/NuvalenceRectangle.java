@@ -101,8 +101,9 @@ public class NuvalenceRectangle extends NuvalencePolygon {
         return super.intersections(otherFigure);
     }
 
+    @Override
     public boolean contains(NuvalencePolygon polygon) {
-        return false;
+        return super.contains(polygon);
     }
 
     public AdjacencyType adjacency(NuvalencePolygon polygon) {

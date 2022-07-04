@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface NuvalencePolygonInterface {
     public List<NuvalencePoint> intersections(NuvalencePolygon polygon);
-    public boolean contains(NuvalencePolygon polygon);
+    public boolean contains(NuvalencePolygon containedPolygon);
     public AdjacencyType adjacency(NuvalencePolygon polygon);
 }

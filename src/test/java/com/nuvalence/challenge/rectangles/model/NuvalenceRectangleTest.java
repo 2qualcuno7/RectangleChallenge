@@ -191,4 +191,23 @@ public class NuvalenceRectangleTest {
 
 
     }
+
+    //Containment
+    @Test
+    void noContainment(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pThree);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pFour);
+
+        assertEquals(false, rectangleA.get().contains(rectangleB.get()));
+    }
+
+    @Test
+    void containmentContainment(){
+
+    }
+
+    @Test
+    void sharesSideContainment(){
+
+    }
 }
