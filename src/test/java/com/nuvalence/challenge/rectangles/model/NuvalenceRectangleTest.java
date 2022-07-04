@@ -161,36 +161,35 @@ public class NuvalenceRectangleTest {
         assertEquals(Optional.empty(), NuvalenceRectangle.getInstance(notARectanglePoints));
     }
 
-    @Test
-    void RectangleOne(){
-        /*
-        Optional<NuvalenceRectangle> optionalNuvalenceRectangle = NuvalenceRectangle.getInstance(notRectangleRandom);
-        if(optionalNuvalenceRectangle.isEmpty())
-            System.out.println("Empty");
-
-        try {
-            System.out.println("Points: ");
-            for (NuvalencePoint point : optionalNuvalenceRectangle.get().getPoints())
-                System.out.println(point);
-
-            System.out.println("\nLine: ");
-            for (NuvalenceLineSegment lineSegment : optionalNuvalenceRectangle.get().getLineSegments())
-                System.out.println(lineSegment);
-        } catch (Exception e){
-            System.out.println("Empty");
-        }
-         */
-    }
-
     //Intersection
     @Test
     void simpleIntersection(){
         Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pSeven);
         Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pEight);
 
-        System.out.println(rectangleA.get().intersections(rectangleB.get()));
+        NuvalencePoint intersectionOne = NuvalencePoint.builder()
+                .x(-7d)
+                .y(1d)
+                .build();
 
+        NuvalencePoint intersectionTwo = NuvalencePoint.builder()
+                .x(-5d)
+                .y(1d)
+                .build();
 
+        assertEquals(true, (
+                rectangleA.get().intersections(rectangleB.get()).contains(intersectionOne)
+                && rectangleA.get().intersections(rectangleB.get()).contains(intersectionTwo)
+                )
+        );
+    }
+
+    @Test
+    void noIntersection(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pOne);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pFour);
+
+        assertEquals(new ArrayList<NuvalencePoint>(), rectangleA.get().intersections(rectangleB.get()));
     }
 
     //Containment
@@ -203,13 +202,19 @@ public class NuvalenceRectangleTest {
     }
 
     @Test
-    void containmentContainment(){
+    void simpleContains(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pNine);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pTen);
 
+        assertEquals(true,  rectangleA.get().contains(rectangleB.get()));
     }
 
     @Test
-    void sharesSideContainment(){
+    void notContained(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pFourteen);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pFifteen);
 
+        assertEquals(false,  rectangleA.get().contains(rectangleB.get()));
     }
 
     //Adjacency
