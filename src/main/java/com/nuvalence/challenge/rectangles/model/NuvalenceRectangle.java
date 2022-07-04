@@ -17,6 +17,11 @@ public class NuvalenceRectangle extends NuvalencePolygon {
     private List<NuvalencePoint> points;
     private List<NuvalenceLineSegment> lineSegments;
 
+    /**
+     * Creates a rectangle from points if the points satisfy the shape's requirements
+     * @param  points vertexes of the possible rectangle.
+     * @return a rectangle or empty
+     */
     public static Optional<NuvalenceRectangle> getInstance(List<NuvalencePoint> points) {
         if(points.size() != 4)
             return empty();

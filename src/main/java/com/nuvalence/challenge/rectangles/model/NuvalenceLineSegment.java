@@ -16,6 +16,10 @@ public class NuvalenceLineSegment {
     private NuvalencePoint start;
     private NuvalencePoint end;
 
+    /**
+     * Calculates de slope of a line
+     * @return the slope of a line
+     */
     public Double findSlope(){
         Double denominator = (this.end.getX() - this.start.getX());
         if(denominator.equals(0.0))
@@ -24,6 +28,10 @@ public class NuvalenceLineSegment {
         return  (this.end.getY() - this.start.getY()) / denominator;
     }
 
+    /**
+     * Finds the y-intercept of a line
+     * @return the y-intercept of the line, if there is one
+     */
     public Optional<Double> yIntercept(){
         Double slope = this.findSlope();
         if(slope.equals(0.0))
@@ -34,6 +42,11 @@ public class NuvalenceLineSegment {
         return Optional.of(this.start.getY() - (this.start.getX() * slope));
     }
 
+    /**
+     * Finds the point of intersection between two lines
+     * @param  otherLine another line.
+     * @return the point of interception, if there is one
+     */
     public Optional<NuvalencePoint> intersection(NuvalenceLineSegment otherLine){
         Double slopeOne = this.findSlope();
         Double slopeTwo = otherLine.findSlope();
@@ -55,7 +68,11 @@ public class NuvalenceLineSegment {
         return Optional.of(new NuvalencePoint(x,y));
     }
 
-
+    /**
+     * Finds a point is contained in a line segment
+     * @param  point point to evaluate.
+     * @return true if it is contained, false otherwise
+     */
     public Boolean isPartOfSegment(NuvalencePoint point){
         if(this.start.equals(point) || this.end.equals(point))
             return true;
@@ -74,6 +91,11 @@ public class NuvalenceLineSegment {
         return false;
     }
 
+    /**
+     * Finds if two line have the same y-intercept and slope
+     * @param  otherLine line to evaluate.
+     * @return true if they have the same attributes, false otherwise
+     */
     public Boolean hasSameFormula(NuvalenceLineSegment otherLine){
         if((this.yIntercept().isEmpty() && otherLine.yIntercept().isEmpty()))
             return (Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001)
@@ -87,10 +109,20 @@ public class NuvalenceLineSegment {
         return false;
     }
 
+    /**
+     * Finds if two line segments are exactly the same
+     * @param  otherLine line to evaluate.
+     * @return true if they have the same attributes, false otherwise
+     */
     public Boolean isSameSegment(NuvalenceLineSegment otherLine){
         return this.equals(otherLine);
     }
 
+    /**
+     * Finds if one line is a subsegment of the other
+     * @param  otherLine line to evaluate.
+     * @return true if it is a subsegment, false otherwise
+     */
     public Boolean isSubsegment(NuvalenceLineSegment otherLine){
         return this.hasSameFormula(otherLine) &&
                 ((this.isPartOfSegment(otherLine.start) && this.isPartOfSegment(otherLine.end))
@@ -98,15 +130,29 @@ public class NuvalenceLineSegment {
 
     }
 
+    /**
+     * Finds if two line segments overlap
+     * @param  otherLine line to evaluate.
+     * @return true if they overlap, false otherwise
+     */
     public Boolean overlap(NuvalenceLineSegment otherLine){
         return this.hasSameFormula(otherLine)
                 && (this.isPartOfSegment(otherLine.start) || this.isPartOfSegment(otherLine.end));
     }
 
+    /**
+     * Finds length of line segment
+     * @return length of line segment
+     */
     public Double length(){
         return sqrt(pow((this.end.getX() - this.start.getX()), 2) + pow((this.end.getY() - this.start.getY()),2));
     }
 
+    /**
+     * Determines if two lines have the same slope but different y-intercept
+     * @param  otherLine line to evaluate.
+     * @return true if they are parallel, false otherwise
+     */
     public Boolean isParallelNotSameLine(NuvalenceLineSegment otherLine){
 
         if(this.findSlope().isInfinite() && otherLine.findSlope().isInfinite()){
@@ -119,6 +165,11 @@ public class NuvalenceLineSegment {
         return !this.hasSameFormula(otherLine) && (Math.abs(otherLine.findSlope() - this.findSlope()) < 0.000001);
     }
 
+    /**
+     * Determines if two form a 90° angle
+     * @param  otherLine line to evaluate.
+     * @return true if they are perpendicular, false otherwise
+     */
     public Boolean isPerpendicular(NuvalenceLineSegment otherLine){
 
         if( (this.findSlope().isInfinite() && (Math.abs(otherLine.findSlope()) < 0.000001))

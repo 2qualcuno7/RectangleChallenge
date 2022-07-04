@@ -13,6 +13,11 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
     List<NuvalencePoint> points;
     List<NuvalenceLineSegment> lineSegments;
 
+    /**
+     * Find the intersection points between two polygons.
+     * @param  otherFigure another polygon.
+     * @return intersection points between two polygons
+     */
     @Override
     public List<NuvalencePoint> intersections(NuvalencePolygon otherFigure) {
         List<NuvalencePoint> intersections = new ArrayList<>();
@@ -33,6 +38,11 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
         return intersections;
     }
 
+    /**
+     * Determine if a polygon contains another one
+     * @param  containedPolygon another polygon.
+     * @return true if it is contained, false otherwise
+     */
     @Override
     public boolean contains(NuvalencePolygon containedPolygon) {
         Double minX = Double.POSITIVE_INFINITY;
@@ -155,6 +165,11 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
         return true;
     }
 
+    /**
+     * Determine the type of adjacency between polygons
+     * @param  polygon another polygon.
+     * @return the type of adjacency between polygons
+     */
     @Override
     public AdjacencyType adjacency(NuvalencePolygon polygon){
         if(this.contains(polygon) || polygon.contains(this))
