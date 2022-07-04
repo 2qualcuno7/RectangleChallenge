@@ -185,10 +185,10 @@ public class NuvalenceRectangleTest {
     //Intersection
     @Test
     void simpleIntersection(){
-        Optional<NuvalenceRectangle> rectangleOne = NuvalenceRectangle.getInstance(pThree);
-        Optional<NuvalenceRectangle> rectangleTwo = NuvalenceRectangle.getInstance(pFour);
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pSeven);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pEight);
 
-        System.out.println(rectangleOne.get().intersections(rectangleTwo.get()));
+        System.out.println(rectangleA.get().intersections(rectangleB.get()));
 
 
     }
@@ -227,5 +227,21 @@ public class NuvalenceRectangleTest {
         Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pEleven);
 
         assertEquals(AdjacencyType.SUB_LINE, rectangleA.get().adjacency(rectangleB.get()));
+    }
+
+    @Test
+    void partial(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pFourteen);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pFifteen);
+
+        assertEquals(AdjacencyType.PARTIAL, rectangleA.get().adjacency(rectangleB.get()));
+    }
+
+    @Test
+    void sharePointNotPartial(){
+        Optional<NuvalenceRectangle> rectangleA = NuvalenceRectangle.getInstance(pThree);
+        Optional<NuvalenceRectangle> rectangleB = NuvalenceRectangle.getInstance(pFour);
+
+        assertEquals(AdjacencyType.NOT_ADJACENT, rectangleA.get().adjacency(rectangleB.get()));
     }
 }

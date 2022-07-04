@@ -174,6 +174,16 @@ public abstract class NuvalencePolygon implements NuvalencePolygonInterface{
                         || (lineTwo.isPartOfSegment(lineOne.getStart()) && lineTwo.isPartOfSegment(lineOne.getEnd()))
                     )
                         return AdjacencyType.SUB_LINE;
+
+                    if(
+                        (lineOne.isPartOfSegment(lineTwo.getStart()) || lineOne.isPartOfSegment(lineTwo.getEnd()))
+                        &&
+                        (
+                            !lineOne.getStart().equals(lineTwo.getStart()) && !lineOne.getEnd().equals(lineTwo.getEnd())
+                            && !lineOne.getStart().equals(lineTwo.getEnd()) && !lineOne.getEnd().equals(lineTwo.getStart())
+                        )
+                    )
+                        return AdjacencyType.PARTIAL;
                 }
             }
         }
